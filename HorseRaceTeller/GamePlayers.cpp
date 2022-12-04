@@ -89,12 +89,15 @@ bool
     auto id = Convert(aIdIn, std::string("([0-9]+)"));
     if (!id.has_value()) {
         std::stringstream ss;
-        ss << "Invalid Command: " << aIdIn;
+        ss << "Invalid Horse Number: " << aIdIn;
         iLogger->PrintLine(ss.str());
         return false;
     }
 
     if (iGamePlayerList.find(id.value()) == iGamePlayerList.end()) {
+        std::stringstream ss;
+        ss << "Invalid Horse Number: " << aIdIn;
+        iLogger->PrintLine(ss.str());
         return false;
     }
     else {
@@ -119,13 +122,16 @@ bool
     auto id = Convert(aIdIn, std::string("([0-9]+)"));
     if (!id.has_value()) {
         std::stringstream ss;
-        ss << "Invalid Command: " << aIdIn;
+        ss << "Invalid Command: " << aIdIn << " " << aBetIn;
         iLogger->PrintLine(ss.str());
         return false;
     }
 
     auto bet = Convert(aBetIn, std::string("([0-9]+).?([0-9]+)?"));
     if (!bet.has_value()) {
+        std::stringstream ss;
+        ss << "Invalid Bet: " << aBetIn;
+        iLogger->PrintLine(ss.str());
         return false;
     }
 
@@ -152,9 +158,6 @@ std::optional<int>
     }
 
     if (!std::string(pieces_match[2]).empty()) {
-        std::stringstream ss;
-        ss << "Invalid Bet: " << aString;
-        iLogger->PrintLine(ss.str());
         return {};
     }
 
