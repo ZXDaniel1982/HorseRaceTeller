@@ -13,8 +13,7 @@ TellerConfig::TellerConfig(std::string aConfigFile,
 	DecodeFundsConfig(aConfigFile, aGameFunds);
 }
 
-int
-TellerConfig::ConvertStringToInt(std::string aString)
+int TellerConfig::ConvertStringToInt(std::string aString)
 {
 	std::stringstream ss;
 	int value;
@@ -25,8 +24,7 @@ TellerConfig::ConvertStringToInt(std::string aString)
 	return value;
 }
 
-void
-TellerConfig::DecodePlayerConfig(std::string aConfigFile, std::shared_ptr<IGamePlayers> aGamePlayers)
+void TellerConfig::DecodePlayerConfig(std::string aConfigFile, std::shared_ptr<IGamePlayers> aGamePlayers)
 {
 	XMLDocument doc;
 	doc.LoadFile(aConfigFile.c_str());
@@ -70,8 +68,7 @@ TellerConfig::DecodePlayerConfig(std::string aConfigFile, std::shared_ptr<IGameP
 	}
 }
 
-void
-TellerConfig::DecodeFundsConfig(std::string aConfigFile, std::shared_ptr<IGameFunds> aGameFunds)
+void TellerConfig::DecodeFundsConfig(std::string aConfigFile, std::shared_ptr<IGameFunds> aGameFunds)
 {
 	XMLDocument doc;
 	doc.LoadFile(aConfigFile.c_str());

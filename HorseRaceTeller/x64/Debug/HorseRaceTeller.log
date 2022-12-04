@@ -1,1 +1,9 @@
-﻿  HorseRaceTeller.vcxproj -> E:\workspace\HorseRaceTeller\x64\Debug\HorseRaceTeller.exe
+﻿  HorseRaceTeller.cpp
+  Teller.cpp
+  GamePlayers.cpp
+  GameFunds.cpp
+  TellerLogger.cpp
+  tinyxml2.cpp
+  TellerConfig.cpp
+  正在生成代码...
+  HorseRaceTeller.vcxproj -> E:\workspace\HorseRaceTeller\x64\Debug\HorseRaceTeller.exe

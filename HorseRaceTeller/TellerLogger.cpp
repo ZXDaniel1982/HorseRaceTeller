@@ -6,11 +6,6 @@ using namespace std;
 
 void TellerLogger::PrintLine(std::string aOuput)
 {
+	iOutput.append(aOuput);
 	cout << aOuput << endl;
 }
-
-Test::Test()
-{}
-
-void Test::show()
-{}

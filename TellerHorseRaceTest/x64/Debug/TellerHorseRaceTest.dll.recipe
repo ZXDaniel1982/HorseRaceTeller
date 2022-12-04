@@ -2,9 +2,6 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>E:\workspace\HorseRaceTeller\x64\Debug\HorseRaceTeller.exe</FullPath>
-    </ProjectOutput>
-    <ProjectOutput>
       <FullPath>E:\workspace\HorseRaceTeller\x64\Debug\TellerHorseRaceTest.dll</FullPath>
     </ProjectOutput>
   </ProjectOutputs>

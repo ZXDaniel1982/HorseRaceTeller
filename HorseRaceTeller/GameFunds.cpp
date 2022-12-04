@@ -2,46 +2,83 @@
 #include <sstream>
 #include "GameFunds.h"
 
+// Total amount of cashes int the teller machine
 int Cash::iTotalFunds = 0;
 
+/**
+ * Cashes with specific Denomination
+ * 
+ * @param[in]   aDenomination - Denomination of the cash
+ *              aInventory - The mount of cash of this denomination stored
+ *              aMaxInventory - The maximum inventory of this denomination
+ *              aLogger - Logger, which reponsible for display output information
+ */
 Cash::Cash(
     int aDenomination,
     int aInventory,
-    int aMaxInventory)
+    int aMaxInventory,
+    std::shared_ptr<ILogger> aLogger)
     : iDenomination(aDenomination),
     iInventory(aInventory),
     iMaxInventory(aMaxInventory),
-    iDispensing(0)
+    iDispensing(0),
+    iLogger(aLogger)
 {
+    /**
+     * Add new amount of cashes to the machine,
+     * update the total funds
+     */
     iTotalFunds += iInventory * aDenomination;
 }
 
-void
-    Cash::DisplayInfo()
+/**
+ * Display how much cash stored for this Denomination
+ */
+void Cash::DisplayInfo()
 {
-    std::cout << "$" << iDenomination << "," << iInventory << std::endl;
+    std::stringstream ss;
+    ss << "$" << iDenomination << "," << iInventory;
+    iLogger->PrintLine(ss.str());
 }
 
-void
-    Cash::Refill()
+/**
+ * Restore this Denomination cashes back to origin inventory
+ */
+void Cash::Refill()
 {
     iInventory = iMaxInventory;
 }
 
-int
-    Cash::GetTotalFund()
+/**
+ * Report total funds in the teller machine
+ * 
+ * @param[out]   iTotalFunds - Total amount of cashes in the machine
+ */
+int Cash::GetTotalFund()
 {
     return iTotalFunds;
 }
 
-int
-    Cash::GetDispensing()
+/**
+ * Customer win the game, report how much will the machine pay
+ * regard this Denomination
+ * 
+ * @param[out]   iDispensing - The amount of cashes of this Denomination
+ *                             to be payed to customer
+ */
+int Cash::GetDispensing()
 {
     return iDispensing;
 }
 
-int
-    Cash::Dispensing(int aPayOut)
+/**
+ * Customer win the game, calculate how much will the machine pay
+ * regard this Denomination
+ * 
+ * @param[in]   aPayOut - The total amount of cashes to be payed to customer
+ * @param[out]   The total amount of cashes left be payed to customer
+ */
+int Cash::Dispensing(int aPayOut)
 {
     iDispensing = aPayOut / iDenomination;
     if (iDispensing > iInventory) {
@@ -52,26 +89,41 @@ int
     return (aPayOut - (iDispensing * iDenomination));
 }
 
+
+/**
+ * Funds stored int the teller machine
+ *
+ * @param[in]   aLogger - Logger, which reponsible for display output information
+ */
 GameFunds::GameFunds(std::shared_ptr<ILogger> aLogger)
     : iLogger(aLogger)
 {
 }
 
-void
-    GameFunds::RegisterFund(
+
+/**
+ * Create Cashes based on config resources
+ *
+ * @param[in]   aDenomination - Denomination of the cash
+ *              aInventory - The mount of cash of this denomination stored
+ *              aMaxInventory - The maximum inventory of this denomination
+ */
+void GameFunds::RegisterFund(
         int aDenomination,
         int aInventory,
         int aMaxInventory)
 {
-    auto cashEntry = std::make_shared<Cash>(aDenomination, aInventory, aMaxInventory);
+    auto cashEntry = std::make_shared<Cash>(aDenomination, aInventory, aMaxInventory, iLogger);
     if (iGameFundList.find(aDenomination) == iGameFundList.end()) {
         iGameFundList.try_emplace(aDenomination, cashEntry);
         iTotalFunds = cashEntry->GetTotalFund();
     }
 }
 
-void
-    GameFunds::DisplayInfo()
+/**
+ * Iter all Cash types and display their information
+ */
+void GameFunds::DisplayInfo()
 {
     iLogger->PrintLine("Inventory:");
     for (auto& fund : iGameFundList) {
@@ -79,16 +131,24 @@ void
     }
 }
 
-void
-    GameFunds::Refill()
+/**
+ * Iter all Cash types and restore their inventory back to origin
+ */
+void GameFunds::Refill()
 {
     for (auto& fund : iGameFundList) {
         fund.second->Refill();
     }
 }
 
-void
-    GameFunds::Payout(std::string aName, int aOdd, int aBet)
+/**
+ * Customer won the game and require for pay out
+ * 
+ * @param[in]   aName - The name of the horse winner
+ *              aOdd - The odd of the horse
+ *              aBet - The amount of money customer bet on the winning horse
+ */
+void GameFunds::Payout(std::string aName, int aOdd, int aBet)
 {
     std::stringstream ss;
     int payOut = aOdd * aBet;
@@ -97,15 +157,19 @@ void
         iLogger->PrintLine(ss.str());
     }
     else {
-        ss << "Payout: " << aName << "," << payOut << ", total " << iTotalFunds;
+        ss << "Payout: " << aName << "," << payOut;
         iLogger->PrintLine(ss.str());
         CalculateDispensing(payOut);
         DisplayDispensing();
     }
 }
 
-void
-    GameFunds::CalculateDispensing(int aPayOut)
+/**
+ * Iter all Cash types and calculate their dispensing
+ *
+ * @param[in]   aPayOut - The total amount of money customer require to be payed out
+ */
+void GameFunds::CalculateDispensing(int aPayOut)
 {
     std::stringstream ss;
     ss << "Dispensing: " << aPayOut;
@@ -116,11 +180,19 @@ void
     }
 }
 
+/**
+ * Iter all Cash types and display the Dispensing outcome to customer
+ *
+ * @param[in]   aPayOut - The total amount of money customer require to be payed out
+ */
 void
     GameFunds::DisplayDispensing()
 {
     for (auto& fund : iGameFundList) {
         auto cash = fund.second;
-        std::cout << "$" << fund.first << "," << cash->GetDispensing() << std::endl;
+
+        std::stringstream ss;
+        ss << "$" << fund.first << "," << cash->GetDispensing();
+        iLogger->PrintLine(ss.str());
     }
 }

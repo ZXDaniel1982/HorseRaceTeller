@@ -19,7 +19,7 @@ public:
 class Cash : public ICash
 {
 public:
-    Cash(int, int, int);
+    Cash(int, int, int, std::shared_ptr<ILogger>);
 public:
     void DisplayInfo() override;
     void Refill() override;
@@ -31,6 +31,7 @@ private:
     int         iInventory;
     int         iMaxInventory;
     int         iDispensing;
+    std::shared_ptr<ILogger> iLogger;
 
     static int  iTotalFunds;
 };
