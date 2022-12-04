@@ -1,7 +1,6 @@
-#include <map>
 #include <iostream>
-#include <regex>
 #include <sstream>
+#include <vector>
 #include "Teller.h"
 
 Teller::Teller(std::shared_ptr<IGamePlayers> aGamePlayers,

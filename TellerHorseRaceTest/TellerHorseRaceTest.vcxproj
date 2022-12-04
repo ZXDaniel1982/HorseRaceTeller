@@ -168,7 +168,7 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HorseRaceTeller\HorseRaceTeller\HorseRaceTeller.vcxproj">
+    <ProjectReference Include="..\HorseRaceTeller\HorseRaceTeller.vcxproj">
       <Project>{b8e85d2b-605d-4a09-b5c0-38e05fb5fedc}</Project>
     </ProjectReference>
   </ItemGroup>

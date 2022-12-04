@@ -14,3 +14,10 @@ class TellerLogger : public ILogger
 public:
     void PrintLine(std::string) override;
 };
+
+class Test
+{
+public:
+    Test();
+    void show();
+};

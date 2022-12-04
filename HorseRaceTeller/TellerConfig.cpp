@@ -1,6 +1,4 @@
-#include <map>
 #include <iostream>
-#include <regex>
 #include <sstream>
 #include "TellerConfig.h"
 #include "tinyxml2.h"

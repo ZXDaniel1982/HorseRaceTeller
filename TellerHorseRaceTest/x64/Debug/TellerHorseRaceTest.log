@@ -1,5 +1,1 @@
-﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets(2116,5): warning : The referenced project '..\HorseRaceTeller\HorseRaceTeller\HorseRaceTeller.vcxproj' does not exist.
-  pch.cpp
-  TellerHorseRaceTest.cpp
-    正在创建库 E:\workspace\HorseRaceTeller\x64\Debug\TellerHorseRaceTest.lib 和对象 E:\workspace\HorseRaceTeller\x64\Debug\TellerHorseRaceTest.exp
-  TellerHorseRaceTest.vcxproj -> E:\workspace\HorseRaceTeller\x64\Debug\TellerHorseRaceTest.dll
+﻿  TellerHorseRaceTest.vcxproj -> E:\workspace\HorseRaceTeller\x64\Debug\TellerHorseRaceTest.dll
