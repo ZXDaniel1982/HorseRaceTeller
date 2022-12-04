@@ -12,7 +12,7 @@ Horse::Horse(
     : iId(aId),
     iName(aName),
     iOdd(aOdd),
-    iWinner(false),
+    iWinner((aId == 1) ? true : false),
     iLogger(aLogger)
 {}
 
@@ -71,15 +71,8 @@ void
     GamePlayers::DisplayInfo()
 {
     iLogger->PrintLine("Horses:");
-    if (iWinner.has_value()) {
-        auto winner = iGamePlayerList.at(iWinner.value());
-        winner->DisplayInfo();
-    }
     for (auto& player : iGamePlayerList) {
-        if (!player.second->IsWinner())
-        {
-            player.second->DisplayInfo();
-        }
+        player.second->DisplayInfo();
     }
 }
 
