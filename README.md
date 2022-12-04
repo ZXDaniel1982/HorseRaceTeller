@@ -13,3 +13,47 @@ Unit Test Files
 
 * TellerHorseRaceTest.cpp : Simulated 11 customer's input for positive and negative situations.
 
+Note :
+
+* This project need to be compiled with C++17
+
+Design Diagram
+
+```plantuml
+@startuml
+
+class Cash <<ICash>> {
+  -shard_ptr<ILogger> iLogger
+}
+class GameFunds <<IGameFunds>> {
+  -shard_ptr<ILogger> iLogger
+}
+GameFunds --* Cash
+
+class Horse <<IAnimal>> {
+  -shard_ptr<ILogger> iLogger
+}
+class GamePlayers <<IGamePlayers>> {
+  -shard_ptr<ILogger> iLogger
+  -shared_ptr<IGameFunds> iGameFunds;
+}
+GamePlayers --* GameFunds
+GamePlayers --* Horse
+
+class Teller {
+  -shard_ptr<ILogger> iLogger
+  -shared_ptr<IGameFunds> iGameFunds
+  -shared_ptr<IGamePlayers> iGamePlayers
+}
+Teller --* GamePlayers
+Teller --* GameFunds
+
+class TellerConfig {
+  -shared_ptr<IGameFunds> iGameFunds
+  -shared_ptr<IGamePlayers> iGamePlayers
+}
+TellerConfig --* GamePlayers
+TellerConfig --* GameFunds
+
+@enduml
+```

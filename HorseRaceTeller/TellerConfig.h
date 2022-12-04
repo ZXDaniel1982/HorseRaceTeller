@@ -3,12 +3,6 @@
 #include "GamePlayers.h"
 #include "GameFunds.h"
 
-class IConfig
-{
-public:
-    virtual ~IConfig() = default;
-};
-
 class TellerConfig
 {
 public:
