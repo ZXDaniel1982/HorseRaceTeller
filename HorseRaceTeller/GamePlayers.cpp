@@ -140,6 +140,11 @@ bool
         if (player->IsWinner()) {
             iGameFunds->Payout(player->GetName(), player->GetOdd(), bet.value());
         }
+        else {
+            std::stringstream ss;
+            ss << "No Payout: " << player->GetName();
+            iLogger->PrintLine(ss.str());
+        }
         return true;
     }
     else {

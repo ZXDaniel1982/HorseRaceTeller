@@ -77,6 +77,6 @@ void Teller::ExecuteCommand(std::string aInput)
 
 void Teller::DisplayInfo()
 {
-	iGamePlayers->DisplayInfo();
 	iGameFunds->DisplayInfo();
+	iGamePlayers->DisplayInfo();
 }
