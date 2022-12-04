@@ -21,3 +21,5 @@ Design Diagram
 ----
 
 ![Class Diagram](doc/design.puml)
+
+![Class Diagram](doc/design.png)
