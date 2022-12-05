@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<teller>
+  <horses description="horses">
+    <horse>
+      <id>1</id>
+      <name>That Darn Gray Cat</name>
+      <odd>5</odd>
+    </horse>
+    <horse>
+      <id>2</id>
+      <name>Fort Utopia</name>
+      <odd>10</odd>
+    </horse>
+    <horse>
+      <id>3</id>
+      <name>Count Sheep</name>
+      <odd>9</odd>
+    </horse>
+    <horse>
+      <id>4</id>
+      <name>Ms Traitour</name>
+      <odd>4</odd>
+    </horse>
+    <horse>
+      <id>5</id>
+      <name>Real Princess</name>
+      <odd>3</odd>
+    </horse>
+    <horse>
+      <id>6</id>
+      <name>Pa Kettle</name>
+      <odd>5</odd>
+    </horse>
+    <horse>
+      <id>7</id>
+      <name>Gin Stinger</name>
+      <odd>6</odd>
+    </horse>
+  </horses>
+  <cashes description="cash in teller">
+    <cash>
+      <Denomination>1</Denomination>
+      <Inventory>10</Inventory>
+      <MaxInventory>10</MaxInventory>
+    </cash>
+    <cash>
+      <Denomination>5</Denomination>
+      <Inventory>10</Inventory>
+      <MaxInventory>10</MaxInventory>
+    </cash>
+    <cash>
+      <Denomination>10</Denomination>
+      <Inventory>10</Inventory>
+      <MaxInventory>10</MaxInventory>
+    </cash>
+    <cash>
+      <Denomination>20</Denomination>
+      <Inventory>10</Inventory>
+      <MaxInventory>10</MaxInventory>
+    </cash>
+    <cash>
+      <Denomination>100</Denomination>
+      <Inventory>10</Inventory>
+      <MaxInventory>10</MaxInventory>
+    </cash>
+  </cashes>
+</teller>
